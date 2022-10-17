@@ -1,33 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState } from "react"
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import Home from "./components/Home"
+import CreatePost from "./components/CreatePost"
+import Login from "./components/Login"
+import { signOut } from "firebase/auth"
+import { auth } from "./firebase"
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"))
+
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear()
+      setIsAuth(false)
+      window.location.pathname = "/login"
+    })
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Router>
+      <nav>
+        <Link to="/">Home</Link>
+        {!isAuth ? <Link to="/login">Login</Link> :
+          <>
+            <Link to="/createpost">Create Post</Link>
+            <button style={{ backgroundColor: "#4CAF50", cursor: "pointer" }} onClick={signUserOut}>Log Out</button>
+          </>
+        }
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home isAuth={isAuth} />} />
+        <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
+        <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+      </Routes>
+    </Router>
   )
 }
 
