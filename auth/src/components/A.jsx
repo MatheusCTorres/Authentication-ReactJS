@@ -3,9 +3,6 @@ import React from 'react'
 export default function A() {
     return (
         <div className="blog_post">
-            <div className="img_pod">
-                <img src={ } alt="random image">
-            </div>
             <div className="container_copy">
                 <h1>{post.title}</h1>
                 <p>{post.postText}</p>
