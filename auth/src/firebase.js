@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC0t6fTSc6pT7Cr1YvhSkTwIxaNg6XozJY",
-    authDomain: "blog-reactjs-da340.firebaseapp.com",
-    projectId: "blog-reactjs-da340",
-    storageBucket: "blog-reactjs-da340.appspot.com",
-    messagingSenderId: "106781034620",
-    appId: "1:106781034620:web:77616ff930675f146ae1f9",
-    measurementId: "G-LVR7L62WB3"
+    apiKey: "AIzaSyDwFEoc9EU78xb3hA2LyLny5RiIn_m1-n8",
+    authDomain: "blog-auth-reactjs.firebaseapp.com",
+    projectId: "blog-auth-reactjs",
+    storageBucket: "blog-auth-reactjs.appspot.com",
+    messagingSenderId: "19125618686",
+    appId: "1:19125618686:web:4c64003a1e2fe2d63a22af",
+    measurementId: "G-SY75NC0PZ5"
 };
 
 // Initialize Firebase
